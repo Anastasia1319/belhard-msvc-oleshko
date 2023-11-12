@@ -19,6 +19,7 @@ import java.util.List;
 public class ResourceServiceImpl implements ResourceService {
     private ResourceRepository resourceRepository;
     private ResourceMapper mapper;
+
     @Override
     public ResourceIdDto upload(byte[] audio) {
         log.info("Audio loading method was called");
