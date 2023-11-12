@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,6 +40,20 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public ResourceIdsDto delete(List<Long> ids) {
-        return null;
+        log.info("Audio delete method was called");
+        List<Long> deletedIds = new ArrayList<>();
+        for (Long id : ids) {
+            if (resourceRepository.findById(id).isEmpty()) {
+                log.info("Audio with id {} not found", id);
+                continue;
+            }
+            resourceRepository.deleteById(id);
+            deletedIds.add(id);
+            log.info("Audio with id {} was deleted", id);
+        }
+        ResourceIdsDto resourceIdsDto = new ResourceIdsDto();
+        resourceIdsDto.setIds(deletedIds);
+        log.info("Audio recordings have been deleted");
+        return resourceIdsDto;
     }
 }
