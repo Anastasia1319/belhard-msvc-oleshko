@@ -19,7 +19,11 @@
 
 Ports used:
 * 8080 - for start application
-* 7003 - for Postgresql
+* 7003 - for resource-service
+* 7002 - for song-service
 
 ### To start a Docker container, you need to run the command on the command line: ###
 docker run --name resources-db -e POSTGRES_PASSWORD=root -e POSTGRES_DB=resources -d -p 7003:5432 postgres
+
+### To start a Docker container, you need to run the command on the command line: ###
+docker run --name songs-db -e POSTGRES_PASSWORD=root -e POSTGRES_DB=songs -d -p 7002:5432 postgres
