@@ -16,3 +16,10 @@
 * Lombok version 1.18.30
 * PostgreSQL version 42.6.0
 * Gradle version 8.4
+
+Ports used:
+* 8080 - for start application
+* 7003 - for Postgresql
+
+### To start a Docker container, you need to run the command on the command line: ###
+docker run --name resources-db -e POSTGRES_PASSWORD=root -e POSTGRES_DB=resources -d -p 7003:5432 postgres
