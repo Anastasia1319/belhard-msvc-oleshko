@@ -7,7 +7,7 @@ import com.belhard.resourceservice.service.ResourceMapper;
 import com.belhard.resourceservice.service.ResourceService;
 import com.belhard.resourceservice.service.dto.ResourceIdDto;
 import com.belhard.resourceservice.service.dto.ResourceIdsDto;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Slf4j
 public class ResourceServiceImpl implements ResourceService {
     private ResourceRepository resourceRepository;
