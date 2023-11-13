@@ -1,4 +1,4 @@
-package com.belhard.resourceservice.data.web;
+package com.belhard.resourceservice.web;
 
 import com.belhard.resourceservice.service.ResourceService;
 import com.belhard.resourceservice.service.dto.ResourceIdDto;

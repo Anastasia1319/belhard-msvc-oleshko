@@ -1,4 +1,4 @@
-package com.belhard.resourceservice.data.web;
+package com.belhard.resourceservice.web;
 
 import com.belhard.resourceservice.exceptions.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
