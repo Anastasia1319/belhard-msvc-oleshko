@@ -1,10 +1,13 @@
 package com.belhard.resourceservice.service.impl;
 
+import com.belhard.resourceservice.client.SongClient;
 import com.belhard.resourceservice.data.ResourceRepository;
 import com.belhard.resourceservice.data.entity.Resource;
 import com.belhard.resourceservice.exceptions.NotFoundException;
+import com.belhard.resourceservice.service.MetaDataService;
 import com.belhard.resourceservice.service.ResourceMapper;
 import com.belhard.resourceservice.service.ResourceService;
+import com.belhard.resourceservice.service.dto.MetaDataDto;
 import com.belhard.resourceservice.service.dto.ResourceIdDto;
 import com.belhard.resourceservice.service.dto.ResourceIdsDto;
 import lombok.AllArgsConstructor;
@@ -20,12 +23,17 @@ import java.util.List;
 public class ResourceServiceImpl implements ResourceService {
     private ResourceRepository resourceRepository;
     private ResourceMapper mapper;
+    private SongClient songClient;
+    private MetaDataService metaDataService;
 
     @Override
     public ResourceIdDto upload(byte[] audio) {
         log.info("Audio loading method was called");
         Resource uploaded = resourceRepository.saveAndFlush(mapper.toEntity(audio));
         log.info("Audio was saved successfully to database");
+        MetaDataDto metaDataDto = metaDataService.getMetaData(audio);
+        metaDataDto.setResourceId(uploaded.getId());
+        songClient.create(metaDataDto);
         return mapper.toIdDto(uploaded);
     }
 
@@ -54,6 +62,7 @@ public class ResourceServiceImpl implements ResourceService {
         ResourceIdsDto resourceIdsDto = new ResourceIdsDto();
         resourceIdsDto.setIds(deletedIds);
         log.info("Audio recordings have been deleted");
+        songClient.deleteByResourceId(deletedIds);
         return resourceIdsDto;
     }
 }
