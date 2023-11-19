@@ -1,5 +1,6 @@
 package com.belhard.resourceservice;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +14,11 @@ public class ResourceserviceApplication {
     }
 
     @Bean
-    public WebClient webClient() {
-        return WebClient.create();
+    public WebClient webClient(@Value("${clients.song-service}") final String hostName,
+                               @Value("${clients.contextPath}") final String contextPath) {
+        return WebClient
+                .builder()
+                .baseUrl(hostName + contextPath)
+                .build();
     }
 }
