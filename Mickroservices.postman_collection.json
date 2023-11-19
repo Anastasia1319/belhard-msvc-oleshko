@@ -1,0 +1,510 @@
+{
+	"info": {
+		"_postman_id": "a60103c6-5e64-4ef9-9d51-6e9af7a8c606",
+		"name": "Mickroservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26674601",
+		"_collection_link": "https://dark-sunset-74538.postman.co/workspace/Team-Workspace~df938d83-4f9e-4087-8cdb-8be25c24c7c9/collection/26674601-a60103c6-5e64-4ef9-9d51-6e9af7a8c606?action=share&source=collection_link&creator=26674601"
+	},
+	"item": [
+		{
+			"name": "Resources",
+			"item": [
+				{
+					"name": "Audio get (resources)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/resources/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Audio loading (resources)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Java_to_study/Java_Microservices/Lesson1/samples/file_Jingle Bells with Lyrics _ Kids Christmas Songs _ Christmas Carols 2018 (128 kbps).mp3"
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/resources",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Audio delete (resources)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/resources",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Not found (resource)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/resources/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bad request JSON (resources)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"somename\": \"name\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/resources",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bad request (.png) (resources)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/C:/Users/Анастасия/Pictures/Welcome.png"
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/resources",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resources"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Songs",
+			"item": [
+				{
+					"name": "MetaData loading (songs)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"My winter song\",\r\n    \"artist\": \"Ronan Keating\",\r\n    \"album\": \"Winter Songs\",\r\n    \"length\": \"4:19\",\r\n    \"resourceId\": 1,\r\n    \"year\": 2020\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/songs",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MetaData get (songs)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/songs/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MetaData delete (songs)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/songs",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Not found (songs)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/songs/13",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bad request (songs)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"day\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/songs",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bad request (without resourceId) songs",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"My winter song\",\r\n    \"artist\": \"Ronan Keating\",\r\n    \"album\": \"Winter Songs\",\r\n    \"length\": \"4:19\",\r\n    \"year\": 2020\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/songs",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bad request not valid length (songs)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"My winter song\",\r\n    \"artist\": \"Ronan Keating\",\r\n    \"album\": \"Winter Songs\",\r\n    \"length\": \"400\",\r\n    \"resourceId\": 1,\r\n    \"year\": 2020\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/songs",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"songs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:7001/resources/1",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"resources",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/D:/Java_to_study/Java_Microservices/Lesson1/samples/file_Jingle Bells with Lyrics _ Kids Christmas Songs _ Christmas Carols 2018 (128 kbps).mp3"
+					}
+				},
+				"url": {
+					"raw": "localhost:7001/resources",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:7001/resources/13",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"resources",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:7001/resources",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get song",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:7000/songs/1",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"songs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bad request (format)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/C:/Users/Анастасия/Pictures/Welcome.png"
+					}
+				},
+				"url": {
+					"raw": "localhost:7001/resources",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bad request (JSON)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"same_text\": \"but it is not format\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:7001/resources",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"resources"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
