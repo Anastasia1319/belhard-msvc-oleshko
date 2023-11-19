@@ -3,7 +3,7 @@ package com.belhard.resourceservice.web;
 import com.belhard.resourceservice.exceptions.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -20,7 +20,7 @@ public class ExceptionTranslator {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public void notValid(MethodArgumentNotValidException e) {
+    public void notValid(HttpMediaTypeNotSupportedException e) {
         log.error("Element not valid", e);
     }
 
