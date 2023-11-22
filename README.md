@@ -19,18 +19,28 @@
 * Apache tika version 2.9.1
 * Mapstruct version 1.5.5.Final
 
-Ports used:
-* 7001 - for start application (resource-service)
-* 7000 - for start song-service
-* 7003 - to connect resource-service
-* 7002 - to connect song-service
+### All services and databases will be packaged in their own containers and launched on standard ports: ###
+* database (resource-service-db and song-service-db) - ports 5432;
+* Song-service and Resource-service - ports 8080.
 
-### To start a Docker container, you need to run the command on the command line: ###
-docker run --name resources-db -e POSTGRES_PASSWORD=root -e POSTGRES_DB=resources -d -p 7003:5432 postgres
-docker run --name songs-db -e POSTGRES_PASSWORD=root -e POSTGRES_DB=songs -d -p 7002:5432 postgres
+### Each service and database can be accessed externally through assigned ports: ###
+* 7001 - Resource-service
+* 7000 - Song-service
+* 7003 - resource-service-db
+* 7002 - song-service-db
 
-### To stop and remove a Docker container, you need to run the command on the command line: ###
-docker stop resources-db
-docker rm resources-db
-docker stop songs-db
-docker rm songs-db
+
+### After restarting services and/or deleting containers and/or images, data from databases is saved in the following volumes: ###
+- from song-service-db in song-service-db volume;
+- from resource-service-db in resource-service-db volume
+
+
+All environment variables are placed in the .env file. 
+
+### To start an application and containers, you need to run the command on the command line: ###
+.\gradlew build
+docker compose up
+
+### To stop an application and containers and remove Docker containers and images, you need to run the command on the command line: ###
+docker compose down
+docker rmi $(docker image ls -q --filter reference=belhard-msvc-oleshko-*)
