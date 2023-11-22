@@ -1,12 +1,12 @@
-server:
-  port: 7000
 spring:
+  application:
+    name: song-service
   datasource:
     password: root
     username: postgres
-    url: jdbc:postgresql://localhost:7002/songs
+    url: jdbc:postgresql://song-service-db:5432/songs
     driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
