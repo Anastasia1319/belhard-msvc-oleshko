@@ -8,6 +8,12 @@ services:
       - resource-service-db
       - song-service
     restart: always
+    environment:
+      - SONG_SERVICE_URL=${SONG_SERVICE_URL}
+      - SONG_CONTEXT_PATH=${SONG_CONTEXT_PATH}
+      - RESOURCE_DB_URL=${RESOURCE_DB_URL}
+      - RESOURCE_DB_PASSWORD=${RESOURCE_DB_PASSWORD}
+      - RESOURCE_DB_USERNAME=${RESOURCE_DB_USERNAME}
   song-service:
     build: song-service
     ports:
@@ -15,6 +21,10 @@ services:
     depends_on:
       - song-service-db
     restart: always
+    environment:
+      - SONG_DB_URL=${SONG_DB_URL}
+      - SONG_DB_PASSWORD=${SONG_DB_PASSWORD}
+      - SONG_DB_USERNAME=${SONG_DB_USERNAME}
   resource-service-db:
     image: postgres
     ports:
@@ -22,8 +32,8 @@ services:
     volumes:
       - resource-service-db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=resources
+      - POSTGRES_PASSWORD=${RESOURCE_DB_PASSWORD}
+      - POSTGRES_DB=${RESOURCE_DB_NAME}
     restart: always
   song-service-db:
     image: postgres
@@ -32,8 +42,8 @@ services:
     volumes:
       - song-service-db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=songs
+      - POSTGRES_PASSWORD=${SONG_DB_PASSWORD}
+      - POSTGRES_DB=${SONG_DB_NAME}
     restart: always
 volumes:
   resource-service-db:
