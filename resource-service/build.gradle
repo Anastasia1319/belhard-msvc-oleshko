@@ -34,6 +34,9 @@ dependencies {
     implementation 'org.apache.tika:tika-parsers:2.9.1'
     implementation 'org.apache.tika:tika-parser-audiovideo-module:2.9.1'
     implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    implementation platform('software.amazon.awssdk:bom:2.20.109')
+    implementation 'software.amazon.awssdk:s3'
+    implementation 'software.amazon.awssdk:apache-client'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.postgresql:postgresql'
