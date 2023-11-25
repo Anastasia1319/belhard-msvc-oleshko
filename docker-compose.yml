@@ -1,5 +1,16 @@
 version: "3.8"
 services:
+  localstack:
+    image: localstack/localstack
+    expose:
+      - "4566"
+    restart: always
+    environment:
+      - LOCALSTACK_URL=${LOCALSTACK_URL}
+      - LOCALSTACK_ACCESS_KEY=${LOCALSTACK_ACCESS_KEY}
+      - LOCALSTACK_SECRET_KEY=${LOCALSTACK_SECRET_KEY}
+      - LOCALSTACK_BUCKET_NAME=${LOCALSTACK_BUCKET_NAME}
+      - LOCALSTACK_REGION=${LOCALSTACK_REGION}
   resource-service:
     build: resource-service
     ports:
