@@ -13,6 +13,6 @@ public class Resource {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "audio")
-    private byte[] audio;
+    @Column(name = "location")
+    private String location;
 }
