@@ -10,4 +10,5 @@ public interface ResourceService {
     ResourceIdDto upload(byte[] audio);
     byte[] download(Long id);
     ResourceIdsDto delete(List<Long> ids);
+    List<byte[]> downloadAll();
 }

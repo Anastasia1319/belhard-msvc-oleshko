@@ -1,3 +1,4 @@
 rootProject.name = 'belhard-msvc-oleshko'
 include "resource-service"
 include "song-service"
+include "discovery-server"

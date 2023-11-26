@@ -1,34 +1,60 @@
 version: "3.8"
 services:
+  localstack:
+    image: localstack/localstack
+    expose:
+      - "4566"
+    restart: always
+    environment:
+      - LOCALSTACK_URL=${LOCALSTACK_URL}
+      - LOCALSTACK_ACCESS_KEY=${LOCALSTACK_ACCESS_KEY}
+      - LOCALSTACK_SECRET_KEY=${LOCALSTACK_SECRET_KEY}
+      - LOCALSTACK_BUCKET_NAME=${LOCALSTACK_BUCKET_NAME}
+      - LOCALSTACK_REGION=${LOCALSTACK_REGION}
+  discovery-server:
+    build: discovery-server
+    ports:
+      - "8761:8761"
+    restart: always
   resource-service:
     build: resource-service
     ports:
       - "7001:8080"
     depends_on:
       - resource-service-db
-      - song-service
+      - discovery-server
     restart: always
     environment:
-      - SONG_SERVICE_URL=${SONG_SERVICE_URL}
-      - SONG_CONTEXT_PATH=${SONG_CONTEXT_PATH}
+      - SONG_SERVICE=${SONG_SERVICE}
       - RESOURCE_DB_URL=${RESOURCE_DB_URL}
       - RESOURCE_DB_PASSWORD=${RESOURCE_DB_PASSWORD}
       - RESOURCE_DB_USERNAME=${RESOURCE_DB_USERNAME}
+      - LOCALSTACK_URL=${LOCALSTACK_URL}
+      - LOCALSTACK_ACCESS_KEY=${LOCALSTACK_ACCESS_KEY}
+      - LOCALSTACK_SECRET_KEY=${LOCALSTACK_SECRET_KEY}
+      - LOCALSTACK_REGION=${LOCALSTACK_REGION}
+      - LOCALSTACK_BUCKET_NAME=${LOCALSTACK_BUCKET_NAME}
+      - EUREKA_CLIENT_DEFAULT_ZONE=${EUREKA_CLIENT_DEFAULT_ZONE}
   song-service:
     build: song-service
-    ports:
-      - "7000:8080"
+    expose:
+      - "8080"
+    deploy:
+      mode: replicated
+      replicas: 3
     depends_on:
       - song-service-db
+      - discovery-server
     restart: always
     environment:
       - SONG_DB_URL=${SONG_DB_URL}
       - SONG_DB_PASSWORD=${SONG_DB_PASSWORD}
       - SONG_DB_USERNAME=${SONG_DB_USERNAME}
+      - EUREKA_CLIENT_DEFAULT_ZONE=${EUREKA_CLIENT_DEFAULT_ZONE}
   resource-service-db:
     image: postgres
-    ports:
-      - "7003:5432"
+    expose:
+      - "5432"
     volumes:
       - resource-service-db:/var/lib/postgresql/data
     environment:
@@ -37,8 +63,8 @@ services:
     restart: always
   song-service-db:
     image: postgres
-    ports:
-      - "7002:5432"
+    expose:
+      - "5432"
     volumes:
       - song-service-db:/var/lib/postgresql/data
     environment:

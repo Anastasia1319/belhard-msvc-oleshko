@@ -45,14 +45,14 @@ public class SongServiceImpl implements SongService {
     public SongIdsDto deleteByResourceIds(List<Long> resourcesIds) {
         log.info("Song delete method was called");
         List<Long> deletedIds = new ArrayList<>();
-        for (Long id : resourcesIds) {
-            if (songRepository.findById(id).isEmpty()) {
-                log.info("Song with id {} not found", id);
+        for (Long resourceId : resourcesIds) {
+            if (songRepository.findSongByResourceId(resourceId).isEmpty()) {
+                log.info("Song with resourceId {} not found", resourceId);
                 continue;
             }
-            songRepository.deleteById(id);
-            deletedIds.add(id);
-            log.info("Song with id {} was deleted", id);
+            songRepository.deleteSongByResourceId(resourceId);
+            deletedIds.add(resourceId);
+            log.info("Song with resourceId {} was deleted", resourceId);
         }
         SongIdsDto songIdsDto = new SongIdsDto();
         songIdsDto.setIds(deletedIds);
