@@ -9,9 +9,9 @@ import org.mapstruct.MappingConstants;
 public interface ResourceMapper {
     ResourceIdDto toIdDto(Resource resource);
 
-    default Resource toEntity(byte[] audio) {
+    default Resource toEntity(String location) {
         Resource resource = new Resource();
-        resource.setAudio(audio);
+        resource.setLocation(location);
         return resource;
     }
 }
