@@ -31,4 +31,9 @@ public class ResourceController {
     public ResourceIdsDto delete(@RequestParam("id") List<Long> ids) {
         return resourceService.delete(ids);
     }
+
+    @GetMapping("/all")
+    public List<byte[]> downloadAll() {
+        return resourceService.downloadAll();
+    }
 }
