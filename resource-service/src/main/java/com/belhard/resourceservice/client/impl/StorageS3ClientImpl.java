@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.util.SerializationUtils;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.core.waiters.WaiterResponse;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -62,7 +61,7 @@ public class StorageS3ClientImpl implements StorageS3Client {
         log.info("Received list of S3Object");
         List<byte[]> resources = new ArrayList<>();
         for (S3Object s3Object : s3Objects) {
-            resources.add(SerializationUtils.serialize(s3Object));
+            resources.add(s3Object.toString().getBytes());
         }
         log.info("Created list of byte[] from list of S3Object");
         return resources;
