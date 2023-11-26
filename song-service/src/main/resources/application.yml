@@ -10,3 +10,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_DEFAULT_ZONE}
