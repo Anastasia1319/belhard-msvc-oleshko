@@ -11,11 +11,14 @@ spring:
     hibernate:
       ddl-auto: update
 clients:
-  song-service: ${SONG_SERVICE_URL}
-  contextPath: ${SONG_CONTEXT_PATH}
+  song-service: ${SONG_SERVICE}
   s3:
     url: ${LOCALSTACK_URL}
     access_key: ${LOCALSTACK_ACCESS_KEY}
     secret_key: ${LOCALSTACK_SECRET_KEY}
     region: ${LOCALSTACK_REGION}
     bucket_name: ${LOCALSTACK_BUCKET_NAME}
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_DEFAULT_ZONE}
